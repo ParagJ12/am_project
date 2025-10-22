@@ -1,490 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Selector</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 600px;
-            width: 100%;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .select-wrapper {
-            position: relative;
-            margin-top: 20px;
-        }
-        
-        label {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        
-        select {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            transition: border 0.3s;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            padding-right: 40px;
-        }
-        
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        select:hover {
-            border-color: #667eea;
-        }
-        
-        .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .detail-page {
-            display: none;
-        }
-        
-        .detail-page.active {
-            display: block;
-        }
-        
-        .home-page.hidden {
-            display: none;
-        }
-        
-        .back-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-bottom: 20px;
-            transition: background 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: #5568d3;
-        }
-        
-        .building-detail {
-            line-height: 1.8;
-        }
-        
-        .building-detail h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 32px;
-        }
-        
-        .detail-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .detail-label {
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 5px;
-        }
-        
-        .detail-value {
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hostel Selector</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh; display:flex; justify-content:center; align-items:center; padding:20px;
+    }
+    .container {
+      background:#fff; border-radius:20px; padding:40px; box-shadow:0 20px 60px rgba(0,0,0,0.3);
+      max-width: 600px; width:100%;
+    }
+    h1 { color:#333; margin-bottom:30px; text-align:center; }
+    .select-wrapper { position:relative; margin-top:20px; }
+    label { display:block; font-size:16px; font-weight:600; color:#555; margin-bottom:10px; }
+    select {
+      width:100%; padding:15px 20px; font-size:16px; border:2px solid #ddd; border-radius:10px; background:#fff; cursor:pointer;
+      transition:border 0.3s; appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 15px center; padding-right:40px;
+    }
+    select:focus { outline:none; border-color:#667eea; }
+    select:hover { border-color:#667eea; }
+    .btn-submit {
+      width:100%; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; padding:15px;
+      border-radius:10px; font-size:18px; font-weight:600; cursor:pointer; margin-top:20px; transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-submit:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+
+    .detail-page { display:none; }
+    .detail-page.active { display:block; }
+    .home-page.hidden { display:none; }
+
+    .back-btn {
+      background:#667eea; color:#fff; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:16px; margin-bottom:20px; transition:background 0.3s;
+    }
+    .back-btn:hover { background:#5568d3; }
+
+    .building-detail { line-height:1.8; }
+    .building-detail h2 { color:#667eea; margin-bottom:20px; font-size:32px; }
+    .detail-item { margin-bottom:15px; padding:15px; background:#f8f9fa; border-radius:8px; }
+    .detail-label { font-weight:600; color:#555; margin-bottom:5px; }
+    .detail-value { color:#333; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="home-page" id="homePage">
-            <h1>Select a Building</h1>
-            
-            <div class="select-wrapper">
-                <label for="buildingSelect">Choose a building:</label>
-                <select id="buildingSelect">
-                    <option value="">-- Select a Building --</option>
-                    <option value="empire">Empire State Building</option>
-                    <option value="burj">Burj Khalifa</option>
-                    <option value="eiffel">Eiffel Tower</option>
-                    <option value="taj">Taj Mahal</option>
-                    <option value="freedom">One World Trade Center</option>
-                    <option value="taipei">Taipei 101</option>
-                    <option value="shard">The Shard</option>
-                    <option value="tower">Willis Tower</option>
-                    <option value="petronas">Petronas Twin Towers</option>
-                    <option value="bigben">Big Ben</option>
-                </select>
-            </div>
-            
-            <button class="btn-submit" id="submitBtn" onclick="showSelectedBuilding()">View Details</button>
-        </div>
-        
-        <div class="detail-page" id="empireDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Empire State Building</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">New York City, USA</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">443.2 meters (1,454 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1931</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">102</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">An iconic Art Deco skyscraper and one of the most famous buildings in the world.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="burjDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Burj Khalifa</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Dubai, UAE</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">828 meters (2,717 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">2010</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">163</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">The world's tallest building, featuring observation decks, restaurants, and luxury residences.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="eiffelDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Eiffel Tower</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Paris, France</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">330 meters (1,083 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1889</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Material:</div>
-                    <div class="detail-value">Wrought iron lattice</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">A global cultural icon of France and one of the most recognizable structures in the world.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="tajDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Taj Mahal</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Agra, India</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">73 meters (240 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1653</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Material:</div>
-                    <div class="detail-value">White marble</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">An ivory-white marble mausoleum built by Mughal emperor Shah Jahan, a UNESCO World Heritage Site.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="freedomDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>One World Trade Center</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">New York City, USA</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">541 meters (1,776 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">2014</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">94</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">The main building of the rebuilt World Trade Center complex, symbolizing resilience and renewal.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="taipeiDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Taipei 101</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Taipei, Taiwan</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">508 meters (1,667 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">2004</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">101</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">Features a massive tuned mass damper and was the world's tallest building from 2004 to 2010.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="shardDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>The Shard</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">London, UK</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">310 meters (1,016 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">2012</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">95</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">A glass-clad pyramid-shaped skyscraper and the tallest building in the United Kingdom.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="towerDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Willis Tower</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Chicago, USA</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">442 meters (1,450 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1973</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">110</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">Formerly known as Sears Tower, it was the world's tallest building for 25 years.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="petronasDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Petronas Twin Towers</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">Kuala Lumpur, Malaysia</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">452 meters (1,483 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1998</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Floors:</div>
-                    <div class="detail-value">88</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">Twin skyscrapers connected by a sky bridge, iconic symbols of Malaysia's modernization.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="detail-page" id="bigbenDetail">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <div class="building-detail">
-                <h2>Big Ben</h2>
-                <div class="detail-item">
-                    <div class="detail-label">Location:</div>
-                    <div class="detail-value">London, UK</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Height:</div>
-                    <div class="detail-value">96 meters (315 feet)</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Completed:</div>
-                    <div class="detail-value">1859</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Type:</div>
-                    <div class="detail-value">Clock Tower</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">The iconic clock tower at the Palace of Westminster, one of London's most famous landmarks.</div>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="home-page" id="homePage">
+      <h1>Select a Hostel</h1>
+      <div class="select-wrapper">
+        <label for="buildingSelect">Choose a hostel:</label>
+        <select id="buildingSelect">
+          <option value="">-- Select a Hostel --</option>
+          <option value="alak">Alakananda Hostel</option>
+          <option value="yamun">Yamuna Hostel</option>
+          <option value="mandak">Mandakini Hostel</option>
+          <option value="gana">Ganga Hostel</option>
+          <option value="saras">Saraswati Hostel</option>
+          <option value="godav">Godavari Hostel1</option>
+          <option value="narma">Narmada Hostel</option>
+          <option value="tap">Tapti Hostel</option>
+          <option value="brahma">Brahmaputra Hostel</option>
+          <option value="pampa">Pampa Hostel</option>
+          <option value="maha">Mahanadi Hostel</option>
+          <option value="tampa">Tamparani Hostel</option>
+          <option value="sindhu">Sindhu Hostel</option>
+          <option value="krish">Krishna Hostel</option>
+          <option value="cauv">Cauvery Hostel</option>
+          <option value="tung">Tunga Hostel</option>
+          <option value="bhadra">Bhadra Hostel</option>
+          <option value="sabar">Sabarmati Hostel</option>
+          <option value="sharav">Sharavathi Hostel</option>
+          <option value="sarayu">Sarayu Hostel</option>
+          <option value="swarna">Swarnamukhi Hostel</option>
+        </select>
+      </div>
+      <button class="btn-submit" id="submitBtn" onclick="showSelectedBuilding()">View Details</button>
     </div>
-    
-    <script>
-        function showSelectedBuilding() {
-            const select = document.getElementById('buildingSelect');
-            const building = select.value;
-            
-            if (!building) {
-                alert('Please select a building first!');
-                return;
-            }
-            
-            document.getElementById('homePage').classList.add('hidden');
-            
-            const detailPages = {
-                'empire': 'empireDetail',
-                'burj': 'burjDetail',
-                'eiffel': 'eiffelDetail',
-                'taj': 'tajDetail',
-                'freedom': 'freedomDetail',
-                'taipei': 'taipeiDetail',
-                'shard': 'shardDetail',
-                'tower': 'towerDetail',
-                'petronas': 'petronasDetail',
-                'bigben': 'bigbenDetail'
-            };
-            
-            document.getElementById(detailPages[building]).classList.add('active');
-        }
-        
-        function goBack() {
-            document.querySelectorAll('.detail-page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('homePage').classList.remove('hidden');
-            document.getElementById('buildingSelect').value = '';
-        }
-    </script>
+
+    <!-- Detail pages (one per hostel) -->
+    <div class="detail-page" id="alakDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Alakananda Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="yamunDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Yamuna Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="mandakDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Mandakini Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="ganaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Ganga Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="sarasDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Saraswati Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="godavDetail">
+      <button class="back-btn" onclick="goBack)">← Back</button>
+      <div class="building-detail">
+        <h2>Godavari Hostel1</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="narmaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Narmada Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="tapDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Tapti Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="brahmaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Brahmaputra Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="pampaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Pampa Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="mahaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Mahanadi Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="tampaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Tamparani Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="sindhuDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Sindhu Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="krishDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Krishna Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="cauvDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Cauvery Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="tungDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Tunga Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="bhadraDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Bhadra Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="sabarDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Sabarmati Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="sharavDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Sharavathi Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="sarayuDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Sarayu Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+    <div class="detail-page" id="swarnaDetail">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <div class="building-detail">
+        <h2>Swarnamukhi Hostel</h2>
+        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
+        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showSelectedBuilding() {
+      const select = document.getElementById('buildingSelect');
+      const building = select.value;
+      if (!building) { alert('Please select a hostel first!'); return; }
+
+      document.getElementById('homePage').classList.add('hidden');
+
+      const detailPages = {
+        alak: 'alakDetail',
+        yamun: 'yamunDetail',
+        mandak: 'mandakDetail',
+        gana: 'ganaDetail',
+        saras: 'sarasDetail',
+        godav: 'godavDetail',
+        narma: 'narmaDetail',
+        tap: 'tapDetail',
+        brahma: 'brahmaDetail',
+        pampa: 'pampaDetail',
+        maha: 'mahaDetail',
+        tampa: 'tampaDetail',
+        sindhu: 'sindhuDetail',
+        krish: 'krishDetail',
+        cauv: 'cauvDetail',
+        tung: 'tungDetail',
+        bhadra: 'bhadraDetail',
+        sabar: 'sabarDetail',
+        sharav: 'sharavDetail',
+        sarayu: 'sarayuDetail',
+        swarna: 'swarnaDetail'
+      };
+
+      document.getElementById(detailPages[building]).classList.add('active');
+    }
+
+    function goBack() {
+      document.querySelectorAll('.detail-page').forEach(page => page.classList.remove('active'));
+      document.getElementById('homePage').classList.remove('hidden');
+      document.getElementById('buildingSelect').value = '';
+    }
+  </script>
 </body>
 </html>
