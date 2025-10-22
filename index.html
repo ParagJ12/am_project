@@ -36,28 +36,66 @@
             text-align: center;
         }
         
-        .building-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+        .select-wrapper {
+            position: relative;
             margin-top: 20px;
         }
         
-        .building-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-            font-size: 18px;
+        label {
+            display: block;
+            font-size: 16px;
             font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
         }
         
-        .building-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        select {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: border 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        select:hover {
+            border-color: #667eea;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         .detail-page {
@@ -120,20 +158,25 @@
     <div class="container">
         <div class="home-page" id="homePage">
             <h1>Select a Building</h1>
-            <div class="building-grid">
-                <div class="building-card" onclick="showBuilding('empire')">
-                    Empire State Building
-                </div>
-                <div class="building-card" onclick="showBuilding('burj')">
-                    Burj Khalifa
-                </div>
-                <div class="building-card" onclick="showBuilding('eiffel')">
-                    Eiffel Tower
-                </div>
-                <div class="building-card" onclick="showBuilding('taj')">
-                    Taj Mahal
-                </div>
+            
+            <div class="select-wrapper">
+                <label for="buildingSelect">Choose a building:</label>
+                <select id="buildingSelect">
+                    <option value="">-- Select a Building --</option>
+                    <option value="empire">Empire State Building</option>
+                    <option value="burj">Burj Khalifa</option>
+                    <option value="eiffel">Eiffel Tower</option>
+                    <option value="taj">Taj Mahal</option>
+                    <option value="freedom">One World Trade Center</option>
+                    <option value="taipei">Taipei 101</option>
+                    <option value="shard">The Shard</option>
+                    <option value="tower">Willis Tower</option>
+                    <option value="petronas">Petronas Twin Towers</option>
+                    <option value="bigben">Big Ben</option>
+                </select>
             </div>
+            
+            <button class="btn-submit" id="submitBtn" onclick="showSelectedBuilding()">View Details</button>
         </div>
         
         <div class="detail-page" id="empireDetail">
@@ -243,17 +286,193 @@
                 </div>
             </div>
         </div>
+        
+        <div class="detail-page" id="freedomDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>One World Trade Center</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">New York City, USA</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">541 meters (1,776 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">2014</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Floors:</div>
+                    <div class="detail-value">94</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">The main building of the rebuilt World Trade Center complex, symbolizing resilience and renewal.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-page" id="taipeiDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>Taipei 101</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">Taipei, Taiwan</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">508 meters (1,667 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">2004</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Floors:</div>
+                    <div class="detail-value">101</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">Features a massive tuned mass damper and was the world's tallest building from 2004 to 2010.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-page" id="shardDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>The Shard</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">London, UK</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">310 meters (1,016 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">2012</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Floors:</div>
+                    <div class="detail-value">95</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">A glass-clad pyramid-shaped skyscraper and the tallest building in the United Kingdom.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-page" id="towerDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>Willis Tower</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">Chicago, USA</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">442 meters (1,450 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">1973</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Floors:</div>
+                    <div class="detail-value">110</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">Formerly known as Sears Tower, it was the world's tallest building for 25 years.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-page" id="petronasDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>Petronas Twin Towers</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">Kuala Lumpur, Malaysia</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">452 meters (1,483 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">1998</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Floors:</div>
+                    <div class="detail-value">88</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">Twin skyscrapers connected by a sky bridge, iconic symbols of Malaysia's modernization.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-page" id="bigbenDetail">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="building-detail">
+                <h2>Big Ben</h2>
+                <div class="detail-item">
+                    <div class="detail-label">Location:</div>
+                    <div class="detail-value">London, UK</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Height:</div>
+                    <div class="detail-value">96 meters (315 feet)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Completed:</div>
+                    <div class="detail-value">1859</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Type:</div>
+                    <div class="detail-value">Clock Tower</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">The iconic clock tower at the Palace of Westminster, one of London's most famous landmarks.</div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script>
-        function showBuilding(building) {
+        function showSelectedBuilding() {
+            const select = document.getElementById('buildingSelect');
+            const building = select.value;
+            
+            if (!building) {
+                alert('Please select a building first!');
+                return;
+            }
+            
             document.getElementById('homePage').classList.add('hidden');
             
             const detailPages = {
                 'empire': 'empireDetail',
                 'burj': 'burjDetail',
                 'eiffel': 'eiffelDetail',
-                'taj': 'tajDetail'
+                'taj': 'tajDetail',
+                'freedom': 'freedomDetail',
+                'taipei': 'taipeiDetail',
+                'shard': 'shardDetail',
+                'tower': 'towerDetail',
+                'petronas': 'petronasDetail',
+                'bigben': 'bigbenDetail'
             };
             
             document.getElementById(detailPages[building]).classList.add('active');
@@ -264,6 +483,7 @@
                 page.classList.remove('active');
             });
             document.getElementById('homePage').classList.remove('hidden');
+            document.getElementById('buildingSelect').value = '';
         }
     </script>
 </body>
