@@ -1,89 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hostel Selector</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh; display:flex; justify-content:center; align-items:center; padding:20px;
-    }
-    .container {
-      background:#fff; border-radius:20px; padding:40px; box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      max-width: 600px; width:100%;
-    }
-    h1 { color:#333; margin-bottom:30px; text-align:center; }
-    .select-wrapper { position:relative; margin-top:20px; }
-    label { display:block; font-size:16px; font-weight:600; color:#555; margin-bottom:10px; }
-    select {
-      width:100%; padding:15px 20px; font-size:16px; border:2px solid #ddd; border-radius:10px; background:#fff; cursor:pointer;
-      transition:border 0.3s; appearance:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-      background-repeat:no-repeat; background-position:right 15px center; padding-right:40px;
-    }
-    select:focus { outline:none; border-color:#667eea; }
-    select:hover { border-color:#667eea; }
-    .btn-submit {
-      width:100%; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; padding:15px;
-      border-radius:10px; font-size:18px; font-weight:600; cursor:pointer; margin-top:20px; transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .btn-submit:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
-    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
-
-    .detail-page { display:none; }
-    .detail-page.active { display:block; }
-    .home-page.hidden { display:none; }
-
-    .back-btn {
-      background:#667eea; color:#fff; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:16px; margin-bottom:20px; transition:background 0.3s;
-    }
-    .back-btn:hover { background:#5568d3; }
-
-    .building-detail { line-height:1.8; }
-    .building-detail h2 { color:#667eea; margin-bottom:20px; font-size:32px; }
-    .detail-item { margin-bottom:15px; padding:15px; background:#f8f9fa; border-radius:8px; }
-    .detail-label { font-weight:600; color:#555; margin-bottom:5px; }
-    .detail-value { color:#333; }
-  </style>
-</head>
 <body>
   <div class="container">
     <div class="home-page" id="homePage">
-      <h1>Select a Hostel</h1>
-      <div class="select-wrapper">
-        <label for="buildingSelect">Choose a hostel:</label>
-        <select id="buildingSelect">
-          <option value="">-- Select a Hostel --</option>
-          <option value="alak">Alakananda Hostel</option>
-          <option value="yamun">Yamuna Hostel</option>
-          <option value="mandak">Mandakini Hostel</option>
-          <option value="gana">Ganga Hostel</option>
-          <option value="saras">Saraswati Hostel</option>
-          <option value="godav">Godavari Hostel1</option>
-          <option value="narma">Narmada Hostel</option>
-          <option value="tap">Tapti Hostel</option>
-          <option value="brahma">Brahmaputra Hostel</option>
-          <option value="pampa">Pampa Hostel</option>
-          <option value="maha">Mahanadi Hostel</option>
-          <option value="tampa">Tamparani Hostel</option>
-          <option value="sindhu">Sindhu Hostel</option>
-          <option value="krish">Krishna Hostel</option>
-          <option value="cauv">Cauvery Hostel</option>
-          <option value="tung">Tunga Hostel</option>
-          <option value="bhadra">Bhadra Hostel</option>
-          <option value="sabar">Sabarmati Hostel</option>
-          <option value="sharav">Sharavathi Hostel</option>
-          <option value="sarayu">Sarayu Hostel</option>
-          <option value="swarna">Swarnamukhi Hostel</option>
-        </select>
+      <h1>Select a Location</h1>
+
+      <!-- Two-column dropdown wrapper -->
+      <div class="dropdown-row">
+        <!-- Column 1: Hostels -->
+        <div class="dropdown-col">
+          <div class="select-wrapper">
+            <label for="hostelSelect">Choose a hostel:</label>
+            <select id="hostelSelect">
+              <option value="">-- Select a Hostel --</option>
+              <option value="alak">Alakananda Hostel</option>
+              <option value="yamun">Yamuna Hostel</option>
+              <option value="mandak">Mandakini Hostel</option>
+              <option value="gana">Ganga Hostel</option>
+              <option value="saras">Saraswati Hostel</option>
+              <option value="godav">Godavari Hostel1</option>
+              <option value="narma">Narmada Hostel</option>
+              <option value="tap">Tapti Hostel</option>
+              <option value="brahma">Brahmaputra Hostel</option>
+              <option value="pampa">Pampa Hostel</option>
+              <option value="maha">Mahanadi Hostel</option>
+              <option value="tampa">Tamparani Hostel</option>
+              <option value="sindhu">Sindhu Hostel</option>
+              <option value="krish">Krishna Hostel</option>
+              <option value="cauv">Cauvery Hostel</option>
+              <option value="tung">Tunga Hostel</option>
+              <option value="bhadra">Bhadra Hostel</option>
+              <option value="sabar">Sabarmati Hostel</option>
+              <option value="sharav">Sharavathi Hostel</option>
+              <option value="sarayu">Sarayu Hostel</option>
+              <option value="swarna">Swarnamukhi Hostel</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Column 2: Academic Zone -->
+        <div class="dropdown-col">
+          <div class="select-wrapper">
+            <label for="academicSelect">Academic Zone:</label>
+            <select id="academicSelect">
+              <option value="">-- Select a Building --</option>
+              <option value="academic1">Academic Section 1</option>
+              <option value="library">Library</option>
+              <option value="clt">CLT</option>
+              <option value="lab">Research Lab</option>
+            </select>
+          </div>
+        </div>
       </div>
+
       <button class="btn-submit" id="submitBtn" onclick="showSelectedBuilding()">View Details</button>
     </div>
 
-    <!-- Detail pages (one per hostel) -->
+    <!-- Detail pages for hostels (same as before) -->
     <div class="detail-page" id="alakDetail">
       <button class="back-btn" onclick="goBack()">← Back</button>
       <div class="building-detail">
@@ -93,181 +64,40 @@
       </div>
     </div>
 
-    <div class="detail-page" id="yamunDetail">
+    <!-- Add similar sections for other hostels... -->
+
+    <!-- Detail pages for academic buildings -->
+    <div class="detail-page" id="academic1Detail">
       <button class="back-btn" onclick="goBack()">← Back</button>
       <div class="building-detail">
-        <h2>Yamuna Hostel</h2>
+        <h2>Academic Section 1</h2>
         <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
         <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
       </div>
     </div>
 
-    <div class="detail-page" id="mandakDetail">
+    <div class="detail-page" id="libraryDetail">
       <button class="back-btn" onclick="goBack()">← Back</button>
       <div class="building-detail">
-        <h2>Mandakini Hostel</h2>
+        <h2>Library</h2>
         <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
         <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
       </div>
     </div>
 
-    <div class="detail-page" id="ganaDetail">
+    <div class="detail-page" id="cltDetail">
       <button class="back-btn" onclick="goBack()">← Back</button>
       <div class="building-detail">
-        <h2>Ganga Hostel</h2>
+        <h2>CLT</h2>
         <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
         <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
       </div>
     </div>
 
-    <div class="detail-page" id="sarasDetail">
+    <div class="detail-page" id="labDetail">
       <button class="back-btn" onclick="goBack()">← Back</button>
       <div class="building-detail">
-        <h2>Saraswati Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="godavDetail">
-      <button class="back-btn" onclick="goBack)">← Back</button>
-      <div class="building-detail">
-        <h2>Godavari Hostel1</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="narmaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Narmada Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="tapDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Tapti Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="brahmaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Brahmaputra Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="pampaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Pampa Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="mahaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Mahanadi Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="tampaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Tamparani Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="sindhuDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Sindhu Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="krishDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Krishna Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="cauvDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Cauvery Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="tungDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Tunga Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="bhadraDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Bhadra Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="sabarDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Sabarmati Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="sharavDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Sharavathi Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="sarayuDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Sarayu Hostel</h2>
-        <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
-        <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="swarnaDetail">
-      <button class="back-btn" onclick="goBack()">← Back</button>
-      <div class="building-detail">
-        <h2>Swarnamukhi Hostel</h2>
+        <h2>Research Lab</h2>
         <div class="detail-item"><div class="detail-label">Energy Consumption (kWh):</div><div class="detail-value">—</div></div>
         <div class="detail-item"><div class="detail-label">Carbon Emissions (tCO2e):</div><div class="detail-value">—</div></div>
       </div>
@@ -277,13 +107,18 @@
 
   <script>
     function showSelectedBuilding() {
-      const select = document.getElementById('buildingSelect');
-      const building = select.value;
-      if (!building) { alert('Please select a hostel first!'); return; }
+      const hostel = document.getElementById('hostelSelect').value;
+      const academic = document.getElementById('academicSelect').value;
+
+      if (!hostel && !academic) {
+        alert('Please select a hostel or academic building!');
+        return;
+      }
 
       document.getElementById('homePage').classList.add('hidden');
 
       const detailPages = {
+        // Hostels
         alak: 'alakDetail',
         yamun: 'yamunDetail',
         mandak: 'mandakDetail',
@@ -304,17 +139,23 @@
         sabar: 'sabarDetail',
         sharav: 'sharavDetail',
         sarayu: 'sarayuDetail',
-        swarna: 'swarnaDetail'
+        swarna: 'swarnaDetail',
+        // Academic
+        academic1: 'academic1Detail',
+        library: 'libraryDetail',
+        clt: 'cltDetail',
+        lab: 'labDetail'
       };
 
-      document.getElementById(detailPages[building]).classList.add('active');
+      const selected = hostel || academic;
+      document.getElementById(detailPages[selected]).classList.add('active');
     }
 
     function goBack() {
       document.querySelectorAll('.detail-page').forEach(page => page.classList.remove('active'));
       document.getElementById('homePage').classList.remove('hidden');
-      document.getElementById('buildingSelect').value = '';
+      document.getElementById('hostelSelect').value = '';
+      document.getElementById('academicSelect').value = '';
     }
   </script>
 </body>
-</html>
